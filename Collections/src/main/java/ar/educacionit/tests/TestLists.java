@@ -8,55 +8,34 @@ public class TestLists {
 
     public static void main(String[] args) {
         
-        /* Vease documentacion: collections-hierarchy.png */        
-        
-        /*
-        1) Vectores:
-            La longitud de los vectores / arrays es estatica, es decir, no puede variar. Tengo que primero indicar el espacio en memoria a utilizar y es estatico.
-        
-        2) Listas:
-            Las listas, de la clase List, del framework Collection, son dinamicas. A medida que se agregan elementos se va reservando espacio en memoria.
-        */
-        
-        // 1) Ejemplo de vector:
-        
-        Persona[] pv = new Persona[4];
-        
-        pv[0] = new Persona("Pablo", "Altamirano", 24, "39461254");
-        pv[1] = new Persona("Claudio", "Altamirano", 61, "111111111");
-        pv[2] = new Persona("Silvia", "Storino", 55, "2222222222");
-        pv[3] = new Persona("Violeta", "Altamirano", 30, "3333333333");
-        
-        //  a)  Recorriendo el vector por medio de indices  
-        System.out.println("Recorriendo mi vector con indices");
-        for(int i=0; i<pv.length; i++){
-            System.out.println(pv[i]);
-        }
-        
-        //  b)   Recorriendo el vector con la estructura forEach (no es una palabra reservada del lenguaje)
-        System.out.println("");
-        System.out.println("Recorriendo mi vector con la estructura forEach");
-        for(Persona i:pv){
-            System.out.println(i);
-        }
-        
+        /* Vease documentacion: collections-hierarchy.png */               
         
         // +++++++ FRAMEWORK "COLLECTIONS" +++++++        
         /*
-            a) Interface "List"
+            1) Interface "List"
         
                 > Representa una lista tipo vector con indices.
                 > La longitud de List es dinamica. (Se reserva espacio en memoria segun se vayan añadiendo elementos).
+                > A diferencia de los Set, permite elementos duplicados.
+                > Permite el acceso posicional a elementos, y la busqueda de elementos.
         
                 >> El metodo .add() añade un elemento a la Lista
                 >> El metodo .remove() remueve un elemento de la Lista
                 >> El metodo .get() devuelve un elemento de la lista
+                >> etc
         
         IMPLEMENTACIONES:
             ArrayList
             LinkedList
             Vector
             Stack
+        */
+        
+        
+        /*        
+            a) IMPLEMENTACION ArrayList
+        
+                > En condiciones normales es la implementacion mas performante de List.
         */
         
         List lista1;        
@@ -105,9 +84,9 @@ public class TestLists {
         
         /*
             Uso de Generics <>:
-                a) Lo que va dentro del <> es el tipo de dato.
+                a) Esta funcionalidad especifica el tipo de datos que iran dentro de la coleccion.
+                ( Lo que vaya dentro de <> es el tipo de dato a utilizar )
                 b) No se permitiran elementos que no sean de ese tipo.
-                c) Pueden ser tipos primitivos, objetos de una clase, etc.
         */
         
         // Ejemplo de una lista que solo contenga objetos de la clase Persona
@@ -154,5 +133,16 @@ public class TestLists {
         System.out.println("Recorriendo la lista 2 luego de copiar:");
         
         lista2.forEach(System.out::println);
+        
+        /*        
+            a) IMPLEMENTACION LinkedList:
+        
+                > Generalmente es un poco mas lenta que ArrayList, pero puede funcionar mejor en ciertos casos.
+                > Permite realizar inserciones y eliminaciones de elementos de forma mas performante.
+                > Sin embargo el acceso a los elementos es siempre secuencial (de atras hacia adelante o viceversa), por lo que acceder a elementos que esten
+                en el medio de la Lista conlleva un tiempo proporcional al tamaño de la lista.
+                (Cuanto mas grande sea, mas lento el acceso sera).
+                
+        */
     }
 }

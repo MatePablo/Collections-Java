@@ -27,9 +27,10 @@ public class TestSet {
         Set<String> interfaceSet;
         
         /*
-            a) HashSet
+            a) IMPLEMENTACION HashSet
                 > Almacena y recupera los elementos de la forma mas rapida posible.
                 > No garantiza ningun orden en los elementos.
+                > Es la implementacion mas rapida de la interfaz set.
         */
         System.out.println("Implementacion HashSet: ");
         
@@ -46,9 +47,39 @@ public class TestSet {
         
         
         /*
-            b) LinkedHashSet
-                > Almacena los elementos en una lista enlazada por orden de ingreso.
-                > No es tan rapida como HashSet
+
+            HASHCODES, Y OBJETOS DUPLICADOS EN UNA TABLA HASHSET:
+        
+            1) Un HashCode es un codigo de 32 bits que Java utiliza para identificar a los objetos. Todos los objetos heredan el metodo .hashCode()
+            que permite recuperar el HashCode asignado de la clase java.lang.Object. Los Hash son importantes para las tablas Hash y otras estructuras de datos
+            que agrupan objetos en base al calculo de su HashCode.
+        
+            2) Dos Strings iguales tendran el mismo HashCode, por lo que seran consideradas el mismo objeto segun Java. Sin embargo, en una tabla HashSet, dos instancias
+            de una clase con los mismos estados tendran HashCodes diferentes.
+        
+            Es decir: Dos Personas con el mismo nombre y dni seran consideradas dos objetos distintos. Lo cual es un problema ya que dentro de las HashSet no debe haber
+            datos duplicados.
+        
+            3) Para solucionar esto se deben sobreescribir los metodos .equals() y .toHashCode() dentro de la clase. Para indicarle al programa que si dos objetos tienen
+            el mismo estado, deben tener el mismo HashCode, es decir, ser considerados un unico objeto.
+        
+        */
+        
+        System.out.println("\nProblema de elementos duplicados en HashSet:");
+        
+        Set<Persona> setPrueba = new HashSet();
+        
+        setPrueba.add(new Persona("Pablo", "Altamirano", 18, "39461254"));
+        setPrueba.add(new Persona("Pablo", "Altamirano", 18, "39461254"));
+        
+        // Lo imprimo para ver. Si no sobreescribo el metodo .equals() de la clase, ambos objetos deberian tener distinto HashCode
+        setPrueba.forEach(a->System.out.println(a+"\t | HashCode:"+a.hashCode()));
+        
+        /*
+            b) IMPLEMENTACION LinkedHashSet
+                > Es una tabla HashSet con una LinkedList corriendo sobre esta.
+                > Ordena los elementos en base al orden en el cual fueron insertados.
+                > No es tan rapida como una tabla HashSet
         */
         System.out.println("\nImplementacion LinkedHashSet: ");
         
@@ -67,8 +98,10 @@ public class TestSet {
         
         
         /*
-            c) TreeSet
-                > Almacena en un arbol por orden natural. (orden Alfabetico).
+            c) IMPLEMENTACION TreeSet
+                > Es un poco mas lenta que HashSet.
+                > Almacena sus elementos en una estructura de arbol rojo-negro.
+                > Ordena los elementos en base a sus valores.   (De forma natural / Alfabeticamente)
         */
         System.out.println("\nImplementacion de TreeSet");
         

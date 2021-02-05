@@ -1,5 +1,7 @@
 package ar.educacionit.entities;
 
+import java.util.Objects;
+
 /*
     Implemento la interfaz Comparable, vease TestSet, en la parte de TreeSet.
 
@@ -59,10 +61,14 @@ public class Persona implements Comparable<Persona>{
     
     
     /*
-        a) Lo que estoy haciendo es basicamente guardar todos los atributos del primer objeto en una variable String como cadena de caracteres.
-          Y todos los atributos del objeto que viene como parametro en otra variable String.
+        a) Lo que hago es basicamente guardar como cadena de caracteres los estados de los objetos en dos variables String.
     
-        b) Luego utilizo el propio metodo compareTo() para comparar ambas variables y fijarme cual es mayor o menos. Segun el int que retorne.
+        b) Luego comparo ambas cadenas utilizando el metodo compareToIgnoreCase(), y segun el retorno, se si la cadena a comparar es menor, igual o mayor.
+        (
+        -1: Menor
+        0: Igual
+        1: Mayor
+        )
     
         > En este caso estoy priorizando el nombre, pero si quisiera ordenar por apellido, solo tendria que cambiar el orden de los atributos y ya.
     */
@@ -80,5 +86,52 @@ public class Persona implements Comparable<Persona>{
             ej: return persona1.compareToIgnoreCase(persona2)*-1
         */
     }
+
+    
+    /*
+        Al implementar el metodo hashCode() y equals() soluciono el problema de elementos duplicados en una tabla HashSet.
+        Sin embargo, el codigo insertado es bastante grande. Si bien sirve y soluciona el problema, podemos escribir nuestro propio codigo mas compacto
+        y facil de leer.
+    
+    */
+    
+    /*
+        1) Sobreescribiendo hashCode():
+    
+            a) El metodo hashCode() por default produce un numero al azar mediante una cuenta arbitraria segun el estado del objeto. SIRVE. Pero es dificil de leer.
+    
+            b) Dos objetos con el mismo estado producen el mismo toString(). Por lo que ambos toString() tendran el mismo HashCode.
+                
+            c) En el metodo hashCode() sencillamente retorna un HashCode del toString() del objeto. Dos objetos con los mismos estados tienen el mismo toString(), por lo que
+            tendran el mismo HashCode y seran considerados el mismo objeto.
+    
+            (Dos Strings con estados iguales son consideradas el mismo objeto, tienen el mismo hashcode, sensillamente paso el estado del objeto a un String. Si dos objetos
+            tienen el mismo estado tendran el mismo String)
+    */
+    @Override
+    public int hashCode() {
+        return toString().hashCode();
+    }
+    
+    
+    /*
+        2) Sobreescribiendo metodo equals:
+    
+            a) Aqui sensillamente comparo el hashcode del primer objeto, con el hashcode del segundo para ver si son iguales o distintos.
+            (True = Iguales, False = Distintos)
+    
+            b) Agrego un IF que filtra los datos. Si el objeto recibido no es de tipo Persona, retorna Falso siempre.
+    */
+
+    @Override
+    public boolean equals(Object obj) {
+        
+        if( !(obj instanceof Persona) ) return false;
+        
+        return toString().hashCode() == obj.hashCode();
+    }
+
+    
+  
     
 }

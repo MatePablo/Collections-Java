@@ -69,8 +69,8 @@ public class TestSet {
         
         Set<Persona> setPrueba = new HashSet();
         
-        setPrueba.add(new Persona("Pablo", "Altamirano", 18, "39461254"));
-        setPrueba.add(new Persona("Pablo", "Altamirano", 18, "39461254"));
+        setPrueba.add(new Persona("Pablo", "Storino", 18, "4141414141"));
+        setPrueba.add(new Persona("Pablo", "Storino", 18, "4141414141"));
         
         // Lo imprimo para ver. Si no sobreescribo el metodo .equals() de la clase, ambos objetos deberian tener distinto HashCode
         setPrueba.forEach(a->System.out.println(a+"\t | HashCode:"+a.hashCode()));
@@ -136,7 +136,7 @@ public class TestSet {
         System.out.println("\nFixeo del problema de TreeSet con objetos:");
         Set personas = new TreeSet();
         
-        personas.add(new Persona("Pablo", "Altamirano", 24, "39461254"));
+        personas.add(new Persona("Pablo", "Storino", 24, "39461254"));
         personas.add(new Persona("Anzio", "Copernico", 32, "132131235"));
         personas.add(new Persona("Beto", "Sofista", 15, "55728i56345"));
                 

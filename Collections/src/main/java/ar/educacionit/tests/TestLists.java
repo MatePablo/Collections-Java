@@ -41,8 +41,8 @@ public class TestLists {
         List lista1;        
         lista1 = new ArrayList();
         
-        lista1.add(new Persona("Pablo", "Altamirano", 24, "39461254"));     // Indice 1
-        lista1.add(new Persona("Violeta", "Altamirano", 31, "333333333"));  // Indice 2
+        lista1.add(new Persona("Pablo", "Storino", 24, "4141414141"));      // Indice 1
+        lista1.add(new Persona("Luis", "Borges", 31, "333333333"));         // Indice 2
         lista1.add("Glaciar Pepito Moreno");                                // Indice 3
         lista1.add(34);                                                     // Indice 4
         
@@ -93,8 +93,8 @@ public class TestLists {
         
         List<Persona> lista2 = new ArrayList();
         
-        lista2.add(new Persona("Pablo", "Altamirano", 24, "39461254"));
-        lista2.add(new Persona("Silvia", "Storino", 55, "1010101010"));
+        lista2.add(new Persona("Pablo", "Storino", 24, "4141414141"));
+        lista2.add(new Persona("Jorge", "Borges", 55, "1010101010"));
         
         // Metodo .get( indice )
         
